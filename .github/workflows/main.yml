@@ -1,0 +1,43 @@
+name: Main Workflow
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+# This prevents any other workflows from running
+permissions:
+  actions: write
+  checks: write
+  contents: write
+  deployments: write
+  issues: write
+  pages: write
+  pull-requests: write
+  repository-projects: write
+  security-events: write
+  statuses: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        # Explicitly disable submodules
+        submodules: false
+    
+    - name: Debug information
+      run: |
+        echo "Repository checkout successful!"
+        echo "Working directory:"
+        pwd
+        echo "Files:"
+        ls -la
+        echo "No submodules error should appear"
+        
+    - name: Build step (placeholder)
+      run: echo "Add your build steps here"
